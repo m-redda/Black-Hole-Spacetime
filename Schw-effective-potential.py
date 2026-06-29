@@ -24,6 +24,7 @@ def V_eff(**values):
 
 
 #V_eff plot function: r_min/r_max -> lower/upper bound of the radial coordinate, n -> number of points used in the plot (default is 500)
+# plot_Veff(0.8, 10, r_s=1, L=10, E0=1) 
 def plot_Veff(r_min, r_max, n = 500, **values):
     
     #Obtains previous V_eff
@@ -41,4 +42,18 @@ def plot_Veff(r_min, r_max, n = 500, **values):
     plt.xlabel(r"$r$")
     plt.ylabel(r"$V_eff$")
     plt.title("Schwarschild Effective Potential")
+    # Parameter box-ChatGPT
+    params = "\n".join(
+        rf"${symbol} = {value}$"
+        for symbol, value in values.items()
+    )
+
+    plt.text(
+        0.98, 0.98, params,
+        transform=plt.gca().transAxes,
+        ha="right",
+        va="top",
+        bbox=dict(facecolor="white", edgecolor="black", alpha=0.8)
+    )
+
     plt.show()
