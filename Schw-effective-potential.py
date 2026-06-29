@@ -16,10 +16,18 @@ def V_eff(**values):
 
 
 
-def plot_Veff(r_min, r_max, **values):
+def plot_Veff(r_min, r_max, n = 500, **values):
+    
+    
     V = V_eff(**values)
-    r_vals = np.linspace(r_min, r_max)
-    plt.plot(r_vals, V(r_vals))
+    
+    V_num = sp.lambdify(r, V, "numpy")
+    
+    r_vals = np.linspace(r_min, r_max, n)
+    
+    
+    
+    plt.plot(r_vals, V_num(r_vals))
     plt.xlabel(r"$r$")
     plt.ylabel(r"$V_eff$")
     plt.show()
